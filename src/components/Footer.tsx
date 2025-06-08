@@ -12,9 +12,9 @@ export const Footer = () => {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
               <img 
-                src="/lovable-uploads/d98a6e52-f3fd-4318-ab9b-2e588da0e565.png" 
+                src="/lovable-uploads/6cb36510-1398-4282-8e94-048f5bda8f8c.png" 
                 alt="Validly Logo" 
-                className="h-8 w-8"
+                className="h-10 w-10"
               />
               <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
                 Validly

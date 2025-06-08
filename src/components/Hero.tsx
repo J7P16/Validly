@@ -39,16 +39,16 @@ export const Hero = () => {
         <div className="flex lg:flex-1">
           <Link to="/" className="flex items-center gap-3">
             <img 
-              src="/lovable-uploads/d98a6e52-f3fd-4318-ab9b-2e588da0e565.png" 
+              src="/lovable-uploads/6cb36510-1398-4282-8e94-048f5bda8f8c.png" 
               alt="Validly Logo" 
-              className="h-8 w-8"
+              className="h-10 w-10"
             />
             <span className="text-xl font-bold text-gray-900">Validly</span>
           </Link>
         </div>
         
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex lg:gap-x-12 lg:mr-8">
+        <div className="hidden lg:flex lg:gap-x-12">
           <div className="relative group">
             <button className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 transition-colors">
               Product
@@ -77,7 +77,7 @@ export const Hero = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 lg:ml-8">
           <AuthButton />
         </div>
       </nav>
