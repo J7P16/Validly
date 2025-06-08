@@ -1,6 +1,8 @@
+
 import { ArrowRight, Shield, Zap, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AuthButton } from "@/components/AuthButton";
+import { Link } from "react-router-dom";
 
 export const Hero = () => {
   return (
@@ -8,7 +10,7 @@ export const Hero = () => {
       {/* Navigation */}
       <nav className="relative z-10 flex items-center justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1">
-          <span className="text-xl font-bold text-gray-900">EmailValidator</span>
+          <span className="text-xl font-bold text-gray-900">Validly</span>
         </div>
         <div className="flex items-center gap-4">
           <AuthButton />
@@ -18,17 +20,19 @@ export const Hero = () => {
       {/* Hero Content */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-          Data-Driven Decisions Start With Validated Emails
+          Create Powerful Startups With Data-Driven Validation
         </h1>
         <p className="mt-6 text-lg leading-8 text-gray-600">
-          Validate email addresses in real-time to improve deliverability, reduce bounce rates, and protect your sender reputation.
+          Validate your crazy startup ideas in real-time to improve growth, deliverability, reduce competition, and take over markets.
         </p>
         <div className="mt-10 flex items-center gap-x-6">
-          <Button size="lg" className="flex items-center gap-2">
-            Get started
-            <ArrowRight className="h-5 w-5" />
-          </Button>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link to="/validate">
+            <Button size="lg" className="flex items-center gap-2">
+              Get started
+              <ArrowRight className="h-5 w-5" />
+            </Button>
+          </Link>
+          <a href="#features" className="text-sm font-semibold leading-6 text-gray-900">
             Learn more <span aria-hidden="true">→</span>
           </a>
         </div>

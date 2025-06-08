@@ -6,13 +6,13 @@ const testimonials = [
   {
     name: "Sarah Chen",
     role: "Founder, TechStart",
-    content: "SaaS Validator saved me months of research. The AI insights were spot-on and helped me pivot to a winning strategy.",
+    content: "Validly saved me months of research. The insights were spot-on and helped me pivot to a winning strategy.",
     rating: 5,
     avatar: "/placeholder.svg"
   },
   {
     name: "Michael Rodriguez",
-    role: "Product Manager, InnovateCorp",
+    role: "Product Manager, InnovateCorp", 
     content: "The competitor analysis was incredibly detailed. I discovered gaps in the market I never would have found on my own.",
     rating: 5,
     avatar: "/placeholder.svg"
@@ -35,7 +35,7 @@ export const Testimonials = () => {
             Trusted by entrepreneurs worldwide
           </h2>
           <p className="text-xl text-slate-600">
-            Join thousands of founders who've validated their ideas with AI
+            Join thousands of founders who've validated their ideas with Validly
           </p>
         </div>
         

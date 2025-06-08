@@ -3,123 +3,83 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Download, TrendingUp, Users, Target, DollarSign, CheckCircle, ExternalLink, Loader2 } from "lucide-react";
+import { ArrowLeft, Download, TrendingUp, Users, Target, DollarSign, CheckCircle, ExternalLink } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { UpgradeModal } from "@/components/UpgradeModal";
-import { ApiKeyInput } from "@/components/ApiKeyInput";
-import { generateValidationResults } from "@/utils/openaiClient";
 
 const Results = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { idea } = location.state || { idea: "Sample startup idea" };
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
-  const [results, setResults] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [apiKey, setApiKey] = useState("");
 
-  useEffect(() => {
-    const savedApiKey = localStorage.getItem('openai-api-key');
-    if (savedApiKey) {
-      setApiKey(savedApiKey);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (apiKey && idea) {
-      fetchResults();
-    }
-  }, [apiKey, idea]);
-
-  const fetchResults = async () => {
-    if (!apiKey) return;
-    
-    setLoading(true);
-    setError("");
-    
-    try {
-      const data = await generateValidationResults(idea, apiKey);
-      setResults(data);
-    } catch (error) {
-      console.error("Failed to fetch GPT results", error);
-      setError("Failed to generate validation results. Please check your API key and try again.");
-    } finally {
-      setLoading(false);
-    }
+  // Mock data for demonstration
+  const mockResults = {
+    marketDemand: {
+      score: 8,
+      summary: "Strong market demand with growing trends in the target sector.",
+      details: "Market analysis shows consistent growth patterns with increasing customer interest in this solution space. The timing appears favorable for market entry."
+    },
+    competitors: [
+      {
+        name: "CompetitorOne",
+        description: "Established player in the market with traditional approach",
+        popularity: "High",
+        locations: "Global",
+        pricing: "$99-199/month"
+      },
+      {
+        name: "CompetitorTwo", 
+        description: "Emerging startup with modern technology stack",
+        popularity: "Medium",
+        locations: "North America",
+        pricing: "$49-99/month"
+      },
+      {
+        name: "CompetitorThree",
+        description: "Specialized solution for enterprise clients",
+        popularity: "Medium",
+        locations: "Enterprise focused",
+        pricing: "Custom pricing"
+      }
+    ],
+    targetAudience: [
+      "Small to medium businesses looking for efficiency",
+      "Tech-savvy entrepreneurs and startups",
+      "Enterprise teams seeking automation"
+    ],
+    revenueModels: [
+      "Subscription-based SaaS model",
+      "Freemium with premium features",
+      "Usage-based pricing tiers"
+    ],
+    mvpFeatures: [
+      {
+        feature: "Core validation functionality",
+        priority: "High",
+        effort: "Medium"
+      },
+      {
+        feature: "User dashboard and analytics",
+        priority: "High", 
+        effort: "Medium"
+      },
+      {
+        feature: "Integration capabilities",
+        priority: "Medium",
+        effort: "High"
+      },
+      {
+        feature: "Mobile responsiveness",
+        priority: "Medium",
+        effort: "Low"
+      }
+    ]
   };
 
   const handleDownload = () => {
     setShowUpgradeModal(true);
   };
-
-  const handleApiKeySet = (newApiKey: string) => {
-    setApiKey(newApiKey);
-  };
-
-  if (!apiKey) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 px-4 py-8">
-        <div className="max-w-2xl mx-auto">
-          <Button
-            variant="ghost"
-            onClick={() => navigate('/validate')}
-            className="mb-8 text-slate-600 hover:text-slate-900"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Validation
-          </Button>
-          
-          <ApiKeyInput onApiKeySet={handleApiKeySet} />
-        </div>
-      </div>
-    );
-  }
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 px-4 py-8 flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-600" />
-          <h2 className="text-xl font-semibold text-slate-900 mb-2">Analyzing Your Idea</h2>
-          <p className="text-slate-600">Generating comprehensive validation results...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 px-4 py-8">
-        <div className="max-w-2xl mx-auto">
-          <Button
-            variant="ghost"
-            onClick={() => navigate('/validate')}
-            className="mb-8 text-slate-600 hover:text-slate-900"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Validation
-          </Button>
-          
-          <Card className="border-red-200 bg-red-50">
-            <CardContent className="pt-6">
-              <p className="text-red-800 mb-4">{error}</p>
-              <div className="space-y-4">
-                <Button onClick={fetchResults} className="w-full">
-                  Try Again
-                </Button>
-                <ApiKeyInput onApiKeySet={handleApiKeySet} existingKey={apiKey} />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    );
-  }
-
-  if (!results) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 px-4 py-8">
@@ -160,16 +120,16 @@ const Results = () => {
                 </div>
                 Market Demand
                 <Badge variant="secondary" className="bg-green-100 text-green-700">
-                  {results.marketDemand.score}/10
+                  {mockResults.marketDemand.score}/10
                 </Badge>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-slate-700 leading-relaxed">
-                {results.marketDemand.summary}
+                {mockResults.marketDemand.summary}
               </p>
               <p className="text-slate-600 leading-relaxed">
-                {results.marketDemand.details}
+                {mockResults.marketDemand.details}
               </p>
             </CardContent>
           </Card>
@@ -186,7 +146,7 @@ const Results = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {results.competitors.map((competitor, index) => (
+                {mockResults.competitors.map((competitor, index) => (
                   <div key={index} className="p-4 bg-slate-50 rounded-lg">
                     <div className="flex items-start justify-between mb-2">
                       <h4 className="font-semibold text-slate-900">{competitor.name}</h4>
@@ -218,7 +178,7 @@ const Results = () => {
             </CardHeader>
             <CardContent>
               <ul className="space-y-2">
-                {results.targetAudience.map((audience, index) => (
+                {mockResults.targetAudience.map((audience, index) => (
                   <li key={index} className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
                     <span className="text-slate-700">{audience}</span>
@@ -240,7 +200,7 @@ const Results = () => {
             </CardHeader>
             <CardContent>
               <ul className="space-y-2">
-                {results.revenueModels.map((model, index) => (
+                {mockResults.revenueModels.map((model, index) => (
                   <li key={index} className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
                     <span className="text-slate-700">{model}</span>
@@ -262,7 +222,7 @@ const Results = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {results.mvpFeatures.map((item, index) => (
+                {mockResults.mvpFeatures.map((item, index) => (
                   <div key={index} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-5 h-5 text-green-500" />
