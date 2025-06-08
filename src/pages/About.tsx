@@ -21,7 +21,14 @@ const About = () => {
             <ArrowLeft className="w-4 h-4" />
             Back to Home
           </Button>
-          <span className="text-xl font-bold text-gray-900">Validly</span>
+          <div className="flex items-center gap-3">
+            <img 
+              src="/lovable-uploads/664b53d3-a98c-4070-9b41-0f496a09b271.png" 
+              alt="Validly Logo" 
+              className="h-6 w-6"
+            />
+            <span className="text-xl font-bold text-gray-900">Validly</span>
+          </div>
         </div>
       </header>
 

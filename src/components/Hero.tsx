@@ -8,10 +8,48 @@ export const Hero = () => {
   return (
     <div className="relative overflow-hidden">
       {/* Navigation */}
-      <nav className="relative z-10 flex items-center justify-between p-6 lg:px-8">
+      <nav className="relative z-10 flex items-center justify-between p-6 lg:px-8 border-b border-gray-100 bg-white/95 backdrop-blur-sm">
         <div className="flex lg:flex-1">
-          <span className="text-xl font-bold text-gray-900">Validly</span>
+          <Link to="/" className="flex items-center gap-3">
+            <img 
+              src="/lovable-uploads/664b53d3-a98c-4070-9b41-0f496a09b271.png" 
+              alt="Validly Logo" 
+              className="h-8 w-8"
+            />
+            <span className="text-xl font-bold text-gray-900">Validly</span>
+          </Link>
         </div>
+        
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex lg:gap-x-8">
+          <div className="relative group">
+            <button className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 transition-colors">
+              Product
+            </button>
+            <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="py-2">
+                <a href="#features" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Features</a>
+                <Link to="/pricing" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Pricing</Link>
+                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">API</a>
+                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Examples</a>
+              </div>
+            </div>
+          </div>
+          
+          <div className="relative group">
+            <button className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 transition-colors">
+              Company
+            </button>
+            <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="py-2">
+                <Link to="/about" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">About</Link>
+                <Link to="/privacy" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Privacy Policy</Link>
+                <Link to="/terms" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Terms of Service</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="flex items-center gap-4">
           <AuthButton />
         </div>
