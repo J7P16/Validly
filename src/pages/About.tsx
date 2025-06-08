@@ -33,8 +33,8 @@ const About = () => {
               About Validly
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              We're on a mission to empower entrepreneurs with data-driven insights 
-              to validate their startup ideas before they invest time and resources.
+              Validly was developed to empower entrepreneurs with data-driven insights 
+              to validate their startup ideas before they invest their precious time and resources.
             </p>
           </div>
 
@@ -43,8 +43,8 @@ const About = () => {
             <div className="bg-white rounded-2xl p-8 shadow-lg">
               <h2 className="text-3xl font-bold text-slate-900 mb-6">Our Mission</h2>
               <p className="text-lg text-slate-600 leading-relaxed">
-                At Validly, we believe that great ideas deserve the best chance of success. 
-                Too many promising startups fail not because of poor execution, but because 
+                Here's the simple truth: great ideas deserve the best chance of success. 
+                Especially in the golden age of AI, too many promising startups fail not because of poor execution, but because 
                 they never properly validated their market fit. Our platform leverages 
                 advanced AI and comprehensive market data to provide entrepreneurs with 
                 the insights they need to make informed decisions about their business ideas.
@@ -65,7 +65,7 @@ const About = () => {
                     <h3 className="text-xl font-semibold text-slate-900">Data-Driven Decisions</h3>
                   </div>
                   <p className="text-slate-600">
-                    We believe in the power of data to guide strategic decisions. 
+                    Validly believes in the power of data to guide strategic decisions. 
                     Every insight we provide is backed by comprehensive market research and analysis.
                   </p>
                 </CardContent>
@@ -95,7 +95,7 @@ const About = () => {
                     <h3 className="text-xl font-semibold text-slate-900">Innovation</h3>
                   </div>
                   <p className="text-slate-600">
-                    We continuously evolve our platform to incorporate the latest in AI technology 
+                    Validly continuously evolves its platform to incorporate the latest technology 
                     and market intelligence to provide the most accurate validation insights.
                   </p>
                 </CardContent>
@@ -110,7 +110,7 @@ const About = () => {
                     <h3 className="text-xl font-semibold text-slate-900">Trust & Transparency</h3>
                   </div>
                   <p className="text-slate-600">
-                    We maintain the highest standards of data security and privacy. 
+                    Validly maintains the highest standards of data security and privacy. 
                     Your ideas are safe with us, and our validation methods are always transparent.
                   </p>
                 </CardContent>
@@ -123,11 +123,11 @@ const About = () => {
             <div className="bg-white rounded-2xl p-8 shadow-lg text-center">
               <h2 className="text-3xl font-bold text-slate-900 mb-6">Our Story</h2>
               <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
-                Founded in 2024, Validly was born from the frustration of seeing too many 
-                great ideas fail due to lack of proper market validation. Our founding team, 
-                composed of serial entrepreneurs and data scientists, combined their expertise 
-                to create a platform that democratizes access to professional-grade market 
-                research and validation tools.
+                Hi, I'm John Patrick, the founder and developer of Validly! Like many of you reading this, I'm also a
+                startup enthusiast. The idea of Validly was born from my frustration of seeing many of my
+                great ideas fail due to them being taken or being overshadowed by large markets. So, I decided
+                decided to create a platform that democratizes access to professional-grade market 
+                research and validation tools to help other entrepreneurs find their spark.
               </p>
             </div>
           </section>
@@ -137,7 +137,7 @@ const About = () => {
             <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-12 text-white">
               <h2 className="text-3xl font-bold mb-4">Ready to Validate Your Idea?</h2>
               <p className="text-xl mb-8 opacity-90">
-                Join thousands of entrepreneurs who trust Validly to validate their startup ideas.
+                Join many of the entrepreneurs who trust Validly to bring their ideas to life.
               </p>
               <Button 
                 size="lg" 
