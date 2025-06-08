@@ -44,9 +44,9 @@ export const Hero = () => {
       <div className="mt-16 relative">
         <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent z-10 h-24 bottom-0"></div>
         <img 
-          src="/placeholder.svg" 
-          alt="SaaS Validator Dashboard Preview"
-          className="rounded-2xl shadow-2xl border border-slate-200 max-w-4xl mx-auto w-full"
+          src="/lovable-uploads/d98a6e52-f3fd-4318-ab9b-2e588da0e565.png" 
+          alt="SaaS Validator Dashboard Preview - Startup Launch Illustration"
+          className="rounded-2xl shadow-2xl border border-slate-200 max-w-4xl mx-auto w-full h-auto object-contain"
         />
       </div>
     </section>

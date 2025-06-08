@@ -1,7 +1,10 @@
 
 import { Github, Twitter, Linkedin } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <footer className="px-4 py-16 bg-slate-900 text-white">
       <div className="max-w-6xl mx-auto">
@@ -31,7 +34,7 @@ export const Footer = () => {
             <h4 className="font-semibold mb-4">Product</h4>
             <ul className="space-y-2 text-slate-400">
               <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
+              <li><button onClick={() => navigate('/pricing')} className="hover:text-white transition-colors text-left">Pricing</button></li>
               <li><a href="#" className="hover:text-white transition-colors">API</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Examples</a></li>
             </ul>
