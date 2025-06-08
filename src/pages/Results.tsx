@@ -1,10 +1,13 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Download, TrendingUp, Users, Target, DollarSign, CheckCircle, ExternalLink } from "lucide-react";
+import { ArrowLeft, Download, TrendingUp, Users, Target, DollarSign, CheckCircle, ExternalLink, Loader2 } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { UpgradeModal } from "@/components/UpgradeModal";
+import { ApiKeyInput } from "@/components/ApiKeyInput";
+import { generateValidationResults } from "@/utils/openaiClient";
 
 const Results = () => {
   const navigate = useNavigate();
@@ -12,31 +15,107 @@ const Results = () => {
   const { idea } = location.state || { idea: "Sample startup idea" };
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const [results, setResults] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [apiKey, setApiKey] = useState("");
 
   useEffect(() => {
-    const fetchResults = async () => {
-      try {
-        const response = await fetch("/api/generate-results", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ idea }),
-        });
+    const savedApiKey = localStorage.getItem('openai-api-key');
+    if (savedApiKey) {
+      setApiKey(savedApiKey);
+    }
+  }, []);
 
-        const data = await response.json();
-        setResults(data);
-      } catch (error) {
-        console.error("Failed to fetch GPT results", error);
-      }
-    };
+  useEffect(() => {
+    if (apiKey && idea) {
+      fetchResults();
+    }
+  }, [apiKey, idea]);
 
-    fetchResults();
-  }, [idea]);
+  const fetchResults = async () => {
+    if (!apiKey) return;
+    
+    setLoading(true);
+    setError("");
+    
+    try {
+      const data = await generateValidationResults(idea, apiKey);
+      setResults(data);
+    } catch (error) {
+      console.error("Failed to fetch GPT results", error);
+      setError("Failed to generate validation results. Please check your API key and try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleDownload = () => {
     setShowUpgradeModal(true);
   };
+
+  const handleApiKeySet = (newApiKey: string) => {
+    setApiKey(newApiKey);
+  };
+
+  if (!apiKey) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 px-4 py-8">
+        <div className="max-w-2xl mx-auto">
+          <Button
+            variant="ghost"
+            onClick={() => navigate('/validate')}
+            className="mb-8 text-slate-600 hover:text-slate-900"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Validation
+          </Button>
+          
+          <ApiKeyInput onApiKeySet={handleApiKeySet} />
+        </div>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 px-4 py-8 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-600" />
+          <h2 className="text-xl font-semibold text-slate-900 mb-2">Analyzing Your Idea</h2>
+          <p className="text-slate-600">Generating comprehensive validation results...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 px-4 py-8">
+        <div className="max-w-2xl mx-auto">
+          <Button
+            variant="ghost"
+            onClick={() => navigate('/validate')}
+            className="mb-8 text-slate-600 hover:text-slate-900"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Validation
+          </Button>
+          
+          <Card className="border-red-200 bg-red-50">
+            <CardContent className="pt-6">
+              <p className="text-red-800 mb-4">{error}</p>
+              <div className="space-y-4">
+                <Button onClick={fetchResults} className="w-full">
+                  Try Again
+                </Button>
+                <ApiKeyInput onApiKeySet={handleApiKeySet} existingKey={apiKey} />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  }
 
   if (!results) {
     return <div>Loading...</div>;
