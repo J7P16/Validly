@@ -140,7 +140,7 @@ const Terms = () => {
               <div className="bg-slate-50 p-4 rounded-lg">
                 <p className="text-slate-700">
                   Email: johncapocyan@gmail.com<br />
-                  Address: 714 Moss Hammock Way, Sugar Land, TX 77479
+                  Phone: +1 (281) 939-4185
                 </p>
               </div>
             </div>
