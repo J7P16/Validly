@@ -41,7 +41,7 @@ const About = () => {
           {/* Mission Section */}
           <section className="mb-16">
             <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <h2 className="text-3xl font-bold text-slate-900 mb-6">Our Mission</h2>
+              <h2 className="text-3xl font-bold text-slate-900 mb-6">Mission</h2>
               <p className="text-lg text-slate-600 leading-relaxed">
                 Here's the simple truth: great ideas deserve the best chance of success. 
                 Especially in the golden age of AI, too many promising startups fail not because of poor execution, but because 
@@ -54,7 +54,7 @@ const About = () => {
 
           {/* Values */}
           <section className="mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">Our Values</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">Values</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card className="border-0 shadow-lg">
                 <CardContent className="p-8">
@@ -121,7 +121,7 @@ const About = () => {
           {/* Team Section */}
           <section className="mb-16">
             <div className="bg-white rounded-2xl p-8 shadow-lg text-center">
-              <h2 className="text-3xl font-bold text-slate-900 mb-6">Our Story</h2>
+              <h2 className="text-3xl font-bold text-slate-900 mb-6">Validly's Story</h2>
               <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
                 Hi, I'm John Patrick, the founder and developer of Validly! Like many of you reading this, I'm also a
                 startup enthusiast. The idea of Validly was born from my frustration of seeing many of my
