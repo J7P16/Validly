@@ -1,54 +1,49 @@
-
+import { ArrowRight, Shield, Zap, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { AuthButton } from "@/components/AuthButton";
 
 export const Hero = () => {
-  const navigate = useNavigate();
-
   return (
-    <section className="px-4 py-20 text-center max-w-6xl mx-auto">
-      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-700 text-sm font-medium mb-8">
-        <Sparkles className="w-4 h-4" />
-        AI-Powered Startup Validation
-      </div>
-      
-      <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight">
-        Validate your startup idea{" "}
-        <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-          in seconds
-        </span>{" "}
-        with AI
-      </h1>
-      
-      <p className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-        Get instant market validation, competitor analysis, and MVP recommendations 
-        powered by advanced AI. Turn your idea into actionable insights today.
-      </p>
-      
-      <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <Button 
-          onClick={() => navigate('/validate')}
-          size="lg"
-          className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
-        >
-          Try Free Validation
-          <ArrowRight className="w-5 h-5" />
-        </Button>
-        
-        <p className="text-sm text-slate-500">
-          No signup required • Get results in 30 seconds
+    <div className="relative overflow-hidden">
+      {/* Navigation */}
+      <nav className="relative z-10 flex items-center justify-between p-6 lg:px-8">
+        <div className="flex lg:flex-1">
+          <span className="text-xl font-bold text-gray-900">EmailValidator</span>
+        </div>
+        <div className="flex items-center gap-4">
+          <AuthButton />
+        </div>
+      </nav>
+
+      {/* Hero Content */}
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+          Data-Driven Decisions Start With Validated Emails
+        </h1>
+        <p className="mt-6 text-lg leading-8 text-gray-600">
+          Validate email addresses in real-time to improve deliverability, reduce bounce rates, and protect your sender reputation.
         </p>
+        <div className="mt-10 flex items-center gap-x-6">
+          <Button size="lg" className="flex items-center gap-2">
+            Get started
+            <ArrowRight className="h-5 w-5" />
+          </Button>
+          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+            Learn more <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
-      
-      <div className="mt-16 relative">
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent z-10 h-24 bottom-0"></div>
-        <img 
-          src="/lovable-uploads/d98a6e52-f3fd-4318-ab9b-2e588da0e565.png" 
-          alt="SaaS Validator Dashboard Preview - Startup Launch Illustration"
-          className="rounded-2xl shadow-2xl border border-slate-200 max-w-4xl mx-auto w-full h-auto object-contain"
+
+      {/* Background Gradient */}
+      <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+        <div
+          className="relative left-[calc(50%-3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-14rem)] sm:w-[72.1875rem]"
+          style={{
+            clipPath:
+              'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+          }}
         />
       </div>
-    </section>
+    </div>
   );
 };
