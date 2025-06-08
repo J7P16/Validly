@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,284 +13,25 @@ const Results = () => {
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const [results, setResults] = useState(null);
 
-  // Function to generate dynamic results based on the idea
-  const generateResults = (userIdea: string) => {
-    const lowerIdea = userIdea.toLowerCase();
-    
-    // Generate competitors based on idea keywords
-    const generateCompetitors = () => {
-      if (lowerIdea.includes('airbnb') || lowerIdea.includes('remote') || lowerIdea.includes('nomad') || lowerIdea.includes('co-living')) {
-        return [
-          {
-            name: "Selina",
-            description: "Global hospitality brand offering co-living and co-working spaces for digital nomads",
-            popularity: "High",
-            locations: "100+ locations worldwide",
-            pricing: "$40-80/night"
-          },
-          {
-            name: "Outsite",
-            description: "Membership-based co-living network for remote workers and digital nomads",
-            popularity: "Medium",
-            locations: "50+ cities globally",
-            pricing: "$200/month membership"
-          },
-          {
-            name: "Roam",
-            description: "Flexible living spaces with month-to-month leases for location-independent professionals",
-            popularity: "Medium",
-            locations: "15+ cities",
-            pricing: "$1,800-3,500/month"
-          }
-        ];
-      } else if (lowerIdea.includes('food') || lowerIdea.includes('delivery') || lowerIdea.includes('restaurant')) {
-        return [
-          {
-            name: "DoorDash",
-            description: "Leading food delivery platform connecting restaurants with customers",
-            popularity: "High",
-            locations: "7,000+ cities globally",
-            pricing: "20-30% commission"
-          },
-          {
-            name: "Uber Eats",
-            description: "Food delivery service integrated with ride-sharing platform",
-            popularity: "High",
-            locations: "6,000+ cities worldwide",
-            pricing: "15-30% commission"
-          },
-          {
-            name: "Grubhub",
-            description: "Online food ordering and delivery marketplace for restaurants",
-            popularity: "Medium",
-            locations: "4,000+ cities in US",
-            pricing: "10-20% commission"
-          }
-        ];
-      } else if (lowerIdea.includes('fitness') || lowerIdea.includes('health') || lowerIdea.includes('workout')) {
-        return [
-          {
-            name: "MyFitnessPal",
-            description: "Comprehensive fitness and nutrition tracking application",
-            popularity: "High",
-            locations: "Global platform",
-            pricing: "Freemium, $9.99/month premium"
-          },
-          {
-            name: "Strava",
-            description: "Social fitness tracking platform for runners and cyclists",
-            popularity: "High",
-            locations: "190+ countries",
-            pricing: "Free/$5/month premium"
-          },
-          {
-            name: "Nike Training Club",
-            description: "Free fitness app with workout routines and training programs",
-            popularity: "Medium",
-            locations: "Global platform",
-            pricing: "Free with premium features"
-          }
-        ];
-      } else if (lowerIdea.includes('finance') || lowerIdea.includes('banking') || lowerIdea.includes('payment')) {
-        return [
-          {
-            name: "Stripe",
-            description: "Payment processing platform for online businesses",
-            popularity: "High",
-            locations: "46+ countries",
-            pricing: "2.9% + 30¢ per transaction"
-          },
-          {
-            name: "Square",
-            description: "Point-of-sale and payment processing solutions",
-            popularity: "High",
-            locations: "US, Canada, Australia, UK",
-            pricing: "2.6% + 10¢ per transaction"
-          },
-          {
-            name: "PayPal",
-            description: "Digital payment platform for online transactions",
-            popularity: "High",
-            locations: "200+ markets worldwide",
-            pricing: "2.9% + fixed fee"
-          }
-        ];
-      } else {
-        // Generic competitors for other ideas
-        return [
-          {
-            name: "Market Leader A",
-            description: "Established player in the market with comprehensive solutions",
-            popularity: "High",
-            locations: "Multiple markets",
-            pricing: "Premium pricing model"
-          },
-          {
-            name: "Emerging Competitor B",
-            description: "Fast-growing startup with innovative approach to the problem",
-            popularity: "Medium",
-            locations: "Key metropolitan areas",
-            pricing: "Competitive pricing"
-          },
-          {
-            name: "Niche Player C",
-            description: "Specialized solution focusing on specific market segment",
-            popularity: "Medium",
-            locations: "Targeted regions",
-            pricing: "Value-based pricing"
-          }
-        ];
-      }
-    };
-
-    // Generate target audience based on idea keywords
-    const generateTargetAudience = () => {
-      if (lowerIdea.includes('remote') || lowerIdea.includes('nomad') || lowerIdea.includes('co-living')) {
-        return [
-          "Digital nomads and remote workers (25-40 years old)",
-          "Freelancers and consultants seeking community",
-          "Remote employees from tech companies",
-          "Entrepreneurs and startup founders",
-          "International students and young professionals",
-          "Companies looking for team retreat locations"
-        ];
-      } else if (lowerIdea.includes('food') || lowerIdea.includes('delivery') || lowerIdea.includes('restaurant')) {
-        return [
-          "Busy professionals who order delivery regularly",
-          "Families looking for convenient meal solutions",
-          "College students and young adults",
-          "Restaurant owners wanting to expand reach",
-          "Food enthusiasts seeking variety",
-          "Time-constrained individuals and working parents"
-        ];
-      } else if (lowerIdea.includes('fitness') || lowerIdea.includes('health') || lowerIdea.includes('workout')) {
-        return [
-          "Health-conscious individuals (18-45 years old)",
-          "Busy professionals seeking efficient workouts",
-          "Fitness beginners looking for guidance",
-          "Athletes and fitness enthusiasts",
-          "People with specific health goals",
-          "Gym-goers and home workout practitioners"
-        ];
-      } else if (lowerIdea.includes('finance') || lowerIdea.includes('banking') || lowerIdea.includes('payment')) {
-        return [
-          "Small business owners and entrepreneurs",
-          "E-commerce merchants and online sellers",
-          "Freelancers and gig economy workers",
-          "Tech-savvy consumers seeking convenience",
-          "International businesses needing cross-border payments",
-          "Financial institutions looking for technology solutions"
-        ];
-      } else {
-        return [
-          "Early adopters and technology enthusiasts",
-          "Professionals in the target industry",
-          "Small to medium businesses",
-          "Consumers seeking innovative solutions",
-          "Tech-savvy individuals (25-45 years old)",
-          "Organizations looking to improve efficiency"
-        ];
-      }
-    };
-
-    // Generate revenue models based on idea type
-    const generateRevenueModels = () => {
-      if (lowerIdea.includes('marketplace') || lowerIdea.includes('platform') || lowerIdea.includes('airbnb')) {
-        return [
-          "Commission-based model (5-15% per transaction)",
-          "Subscription tiers for premium features",
-          "Listing fees for premium placement",
-          "Payment processing fees",
-          "Advertisement revenue from featured listings",
-          "Premium membership with additional benefits"
-        ];
-      } else if (lowerIdea.includes('saas') || lowerIdea.includes('software') || lowerIdea.includes('app')) {
-        return [
-          "Freemium model with premium subscriptions",
-          "Tiered monthly/annual subscription plans",
-          "Usage-based pricing model",
-          "Enterprise licensing deals",
-          "API access fees for developers",
-          "White-label licensing to other companies"
-        ];
-      } else if (lowerIdea.includes('e-commerce') || lowerIdea.includes('retail') || lowerIdea.includes('delivery')) {
-        return [
-          "Product markup and retail margins",
-          "Delivery and service fees",
-          "Subscription boxes for regular customers",
-          "Affiliate commissions from partners",
-          "Premium membership with benefits",
-          "Advertising fees from brands and suppliers"
-        ];
-      } else {
-        return [
-          "Subscription-based recurring revenue",
-          "Transaction-based fee structure",
-          "Freemium model with premium upgrades",
-          "Enterprise and business packages",
-          "Partnership and affiliate revenue",
-          "Advertising and sponsored content"
-        ];
-      }
-    };
-
-    // Generate MVP features based on idea complexity
-    const generateMVPFeatures = () => {
-      const commonFeatures = [
-        { feature: "User registration and authentication", priority: "High", effort: "Medium" },
-        { feature: "Core functionality implementation", priority: "High", effort: "High" },
-        { feature: "Basic user interface and navigation", priority: "High", effort: "Medium" },
-        { feature: "Payment processing integration", priority: "High", effort: "High" },
-        { feature: "User profile and settings management", priority: "Medium", effort: "Medium" },
-        { feature: "Search and filtering capabilities", priority: "Medium", effort: "Medium" },
-        { feature: "Mobile-responsive design", priority: "Medium", effort: "Medium" },
-        { feature: "Basic analytics and reporting", priority: "Low", effort: "Medium" }
-      ];
-
-      if (lowerIdea.includes('marketplace') || lowerIdea.includes('platform')) {
-        return [
-          { feature: "User registration for buyers and sellers", priority: "High", effort: "Medium" },
-          { feature: "Product/service listing creation", priority: "High", effort: "High" },
-          { feature: "Search and discovery functionality", priority: "High", effort: "Medium" },
-          { feature: "Secure payment processing", priority: "High", effort: "High" },
-          { feature: "Rating and review system", priority: "Medium", effort: "Medium" },
-          { feature: "Messaging between users", priority: "Medium", effort: "Medium" },
-          { feature: "Mobile app for iOS and Android", priority: "Medium", effort: "High" },
-          { feature: "Admin dashboard for platform management", priority: "Low", effort: "Medium" }
-        ];
-      } else if (lowerIdea.includes('social') || lowerIdea.includes('community')) {
-        return [
-          { feature: "User profiles and authentication", priority: "High", effort: "Medium" },
-          { feature: "Content creation and sharing", priority: "High", effort: "High" },
-          { feature: "News feed and content discovery", priority: "High", effort: "High" },
-          { feature: "Social interactions (likes, comments)", priority: "High", effort: "Medium" },
-          { feature: "Friend/follower connections", priority: "Medium", effort: "Medium" },
-          { feature: "Push notifications system", priority: "Medium", effort: "Medium" },
-          { feature: "Content moderation tools", priority: "Medium", effort: "High" },
-          { feature: "Analytics and engagement metrics", priority: "Low", effort: "Medium" }
-        ];
-      } else {
-        return commonFeatures;
-      }
-    };
-
-    return {
-      marketDemand: {
-        score: Math.floor(Math.random() * 3) + 7.5, // Random score between 7.5-10
-        summary: `Your idea shows strong potential in the current market landscape. Based on recent market analysis, there's significant demand for solutions in this space, with growing consumer interest and favorable market conditions. The timing appears optimal given current industry trends and technological advancements.`,
-        details: `Market research indicates this sector is experiencing robust growth, driven by changing consumer behaviors and technological adoption. Key market drivers include digital transformation trends, increased demand for efficiency, and evolving user expectations. The addressable market shows promising expansion potential with multiple monetization opportunities.`
-      },
-      competitors: generateCompetitors(),
-      targetAudience: generateTargetAudience(),
-      revenueModels: generateRevenueModels(),
-      mvpFeatures: generateMVPFeatures()
-    };
-  };
-
   useEffect(() => {
-    // Generate results when component mounts
-    const generatedResults = generateResults(idea);
-    setResults(generatedResults);
+    const fetchResults = async () => {
+      try {
+        const response = await fetch("/api/generate-results", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ idea }),
+        });
+
+        const data = await response.json();
+        setResults(data);
+      } catch (error) {
+        console.error("Failed to fetch GPT results", error);
+      }
+    };
+
+    fetchResults();
   }, [idea]);
 
   const handleDownload = () => {
@@ -314,7 +54,7 @@ const Results = () => {
             <ArrowLeft className="w-4 h-4 mr-2" />
             Validate Another Idea
           </Button>
-          
+
           <Button
             onClick={handleDownload}
             className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6"
