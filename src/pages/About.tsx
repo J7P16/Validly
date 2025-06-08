@@ -1,165 +1,71 @@
-
-import { ArrowLeft, Users, Target, Lightbulb, Shield } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
-import { Footer } from "@/components/Footer";
 
 const About = () => {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      {/* Header */}
-      <header className="px-6 py-6">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <Button 
-            variant="ghost" 
-            onClick={() => navigate('/')}
-            className="flex items-center gap-2"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Home
-          </Button>
-          <div className="flex items-center gap-3">
-            <img 
-              src="/lovable-uploads/664b53d3-a98c-4070-9b41-0f496a09b271.png" 
-              alt="Validly Logo" 
-              className="h-6 w-6"
-            />
-            <span className="text-xl font-bold text-gray-900">Validly</span>
-          </div>
+      {/* Navigation */}
+      <nav className="flex items-center justify-between p-6 lg:px-8 border-b border-gray-100 bg-white/95 backdrop-blur-sm">
+        <div className="flex items-center gap-3">
+          <img 
+            src="/lovable-uploads/d98a6e52-f3fd-4318-ab9b-2e588da0e565.png" 
+            alt="Validly Logo" 
+            className="h-8 w-8"
+          />
+          <span className="text-xl font-bold text-gray-900">Validly</span>
         </div>
-      </header>
+        
+        <Button
+          variant="ghost"
+          onClick={() => navigate('/')}
+          className="text-slate-600 hover:text-slate-900"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Home
+        </Button>
+      </nav>
 
-      {/* Main Content */}
-      <main className="px-6 py-12">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-              About Validly
-            </h1>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Validly was developed to empower entrepreneurs with data-driven insights 
-              to validate their startup ideas before they invest their precious time and resources.
-            </p>
-          </div>
+      {/* Content */}
+      <div className="max-w-4xl mx-auto py-12 px-6">
+        <h1 className="text-4xl font-bold text-gray-900 mb-8">About Validly</h1>
 
-          {/* Mission Section */}
-          <section className="mb-16">
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <h2 className="text-3xl font-bold text-slate-900 mb-6">Mission</h2>
-              <p className="text-lg text-slate-600 leading-relaxed">
-                Here's the simple truth: great ideas deserve the best chance of success. 
-                Especially in the golden age of AI, too many promising startups fail not because of poor execution, but because 
-                they never properly validated their market fit. Our platform leverages 
-                advanced AI and comprehensive market data to provide entrepreneurs with 
-                the insights they need to make informed decisions about their business ideas.
-              </p>
-            </div>
-          </section>
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h2>
+          <p className="text-gray-700 leading-7">
+            At Validly, we're dedicated to empowering entrepreneurs and innovators by providing them with the tools they need to validate their startup ideas quickly and effectively. We believe that every great idea deserves a chance to succeed, and we're here to help you make that happen.
+          </p>
+        </section>
 
-          {/* Values */}
-          <section className="mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">Values</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card className="border-0 shadow-lg">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <Target className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-slate-900">Data-Driven Decisions</h3>
-                  </div>
-                  <p className="text-slate-600">
-                    Validly believes in the power of data to guide strategic decisions. 
-                    Every insight we provide is backed by comprehensive market research and analysis.
-                  </p>
-                </CardContent>
-              </Card>
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">What We Do</h2>
+          <p className="text-gray-700 leading-7 mb-4">
+            Our AI-powered platform analyzes your startup idea, providing you with valuable insights into market demand, competitor analysis, target audience, and potential revenue models. We help you prioritize your MVP features and create a solid foundation for your business.
+          </p>
+          <ul className="list-disc list-inside text-gray-700 leading-7">
+            <li><strong>Market Analysis:</strong> Understand the potential of your market.</li>
+            <li><strong>Competitor Insights:</strong> Identify and analyze your top competitors.</li>
+            <li><strong>Target Audience:</strong> Define and understand your ideal customers.</li>
+            <li><strong>MVP Prioritization:</strong> Focus on the essential features for your initial product.</li>
+          </ul>
+        </section>
 
-              <Card className="border-0 shadow-lg">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                      <Users className="w-6 h-6 text-green-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-slate-900">Entrepreneur First</h3>
-                  </div>
-                  <p className="text-slate-600">
-                    We understand the challenges of building a startup. Our tools are designed 
-                    by entrepreneurs, for entrepreneurs, with simplicity and effectiveness in mind.
-                  </p>
-                </CardContent>
-              </Card>
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Our Team</h2>
+          <p className="text-gray-700 leading-7">
+            We are a team of experienced entrepreneurs, data scientists, and AI specialists passionate about helping others succeed. With a diverse background in technology, business, and innovation, we bring a unique perspective to the world of startup validation.
+          </p>
+        </section>
 
-              <Card className="border-0 shadow-lg">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <Lightbulb className="w-6 h-6 text-purple-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-slate-900">Innovation</h3>
-                  </div>
-                  <p className="text-slate-600">
-                    Validly continuously evolves its platform to incorporate the latest technology 
-                    and market intelligence to provide the most accurate validation insights.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="border-0 shadow-lg">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                      <Shield className="w-6 h-6 text-red-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-slate-900">Trust & Transparency</h3>
-                  </div>
-                  <p className="text-slate-600">
-                    Validly maintains the highest standards of data security and privacy. 
-                    Your ideas are safe with us, and our validation methods are always transparent.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
-
-          {/* Team Section */}
-          <section className="mb-16">
-            <div className="bg-white rounded-2xl p-8 shadow-lg text-center">
-              <h2 className="text-3xl font-bold text-slate-900 mb-6">Validly's Story</h2>
-              <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
-                Hi, I'm John Patrick, the founder and developer of Validly! Like many of you reading this, I'm also a
-                startup enthusiast. The idea of Validly was born from my frustration of seeing many of my
-                great ideas fail due to them being taken or being overshadowed by large markets. So, I decided
-                decided to create a platform that democratizes access to professional-grade market 
-                research and validation tools to help other entrepreneurs find their spark.
-              </p>
-            </div>
-          </section>
-
-          {/* CTA */}
-          <section className="text-center">
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-12 text-white">
-              <h2 className="text-3xl font-bold mb-4">Ready to Validate Your Idea?</h2>
-              <p className="text-xl mb-8 opacity-90">
-                Join many of the entrepreneurs who trust Validly to bring their ideas to life.
-              </p>
-              <Button 
-                size="lg" 
-                variant="secondary"
-                onClick={() => navigate('/validate')}
-                className="bg-white text-blue-600 hover:bg-gray-100"
-              >
-                Start Validating
-              </Button>
-            </div>
-          </section>
-        </div>
-      </main>
-
-      <Footer />
+        <section>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Contact Us</h2>
+          <p className="text-gray-700 leading-7">
+            Have questions or want to learn more? Reach out to us at <a href="mailto:info@validly.com" className="text-blue-600 hover:underline">info@validly.com</a>.
+          </p>
+        </section>
+      </div>
     </div>
   );
 };

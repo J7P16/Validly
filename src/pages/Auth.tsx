@@ -11,6 +11,8 @@ const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
@@ -31,7 +33,7 @@ const Auth = () => {
     try {
       const { error } = isLogin 
         ? await signIn(email, password)
-        : await signUp(email, password);
+        : await signUp(email, password, firstName, lastName);
 
       if (error) {
         setError(error.message);
@@ -40,6 +42,8 @@ const Auth = () => {
         setIsLogin(true);
         setEmail('');
         setPassword('');
+        setFirstName('');
+        setLastName('');
       }
     } catch (err) {
       setError('An unexpected error occurred');
@@ -58,6 +62,28 @@ const Auth = () => {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
+            {!isLogin && (
+              <>
+                <div>
+                  <Input
+                    type="text"
+                    placeholder="First Name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    required
+                  />
+                </div>
+                <div>
+                  <Input
+                    type="text"
+                    placeholder="Last Name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    required
+                  />
+                </div>
+              </>
+            )}
             <div>
               <Input
                 type="email"
@@ -102,6 +128,8 @@ const Auth = () => {
                 setIsLogin(!isLogin);
                 setError('');
                 setSuccess('');
+                setFirstName('');
+                setLastName('');
               }}
               className="text-sm text-blue-600 hover:underline"
             >

@@ -3,8 +3,35 @@ import { ArrowRight, Shield, Zap, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AuthButton } from "@/components/AuthButton";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Hero = () => {
+  const { user } = useAuth();
+
+  // Fetch user profile data
+  const { data: profile } = useQuery({
+    queryKey: ['profile', user?.id],
+    queryFn: async () => {
+      if (!user?.id) return null;
+      
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('first_name, last_name')
+        .eq('id', user.id)
+        .single();
+      
+      if (error) {
+        console.error('Error fetching profile:', error);
+        return null;
+      }
+      
+      return data;
+    },
+    enabled: !!user?.id,
+  });
+
   return (
     <div className="relative overflow-hidden">
       {/* Navigation */}
@@ -12,7 +39,7 @@ export const Hero = () => {
         <div className="flex lg:flex-1">
           <Link to="/" className="flex items-center gap-3">
             <img 
-              src="/lovable-uploads/664b53d3-a98c-4070-9b41-0f496a09b271.png" 
+              src="/lovable-uploads/d98a6e52-f3fd-4318-ab9b-2e588da0e565.png" 
               alt="Validly Logo" 
               className="h-8 w-8"
             />
@@ -21,7 +48,7 @@ export const Hero = () => {
         </div>
         
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex lg:gap-x-8">
+        <div className="hidden lg:flex lg:gap-x-12 lg:mr-8">
           <div className="relative group">
             <button className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 transition-colors">
               Product
@@ -58,7 +85,14 @@ export const Hero = () => {
       {/* Hero Content */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-          Create Powerful Startups With Data-Driven Validation
+          {user && profile?.first_name ? (
+            <>
+              Hi <span className="text-blue-600">{profile.first_name}</span>,{" "}
+              Create Powerful Startups With Data-Driven Validation
+            </>
+          ) : (
+            "Create Powerful Startups With Data-Driven Validation"
+          )}
         </h1>
         <p className="mt-6 text-lg leading-8 text-gray-600">
           Validate your crazy startup ideas in real-time to improve growth, deliverability, reduce competition, and take over markets.
