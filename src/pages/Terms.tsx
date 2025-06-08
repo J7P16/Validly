@@ -139,8 +139,8 @@ const Terms = () => {
               </p>
               <div className="bg-slate-50 p-4 rounded-lg">
                 <p className="text-slate-700">
-                  Email: legal@validly.com<br />
-                  Address: 123 Innovation Drive, Tech City, TC 12345
+                  Email: johncapocyan@gmail.com<br />
+                  Address: 714 Moss Hammock Way, Sugar Land, TX 77479
                 </p>
               </div>
             </div>
