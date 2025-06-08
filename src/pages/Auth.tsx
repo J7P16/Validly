@@ -12,6 +12,7 @@ const Auth = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   
   const { signIn, signUp, user } = useAuth();
@@ -24,6 +25,7 @@ const Auth = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setSuccess('');
     setLoading(true);
 
     try {
@@ -34,7 +36,10 @@ const Auth = () => {
       if (error) {
         setError(error.message);
       } else if (!isLogin) {
-        setError('Check your email for the confirmation link!');
+        setSuccess('Account created successfully! You can now sign in.');
+        setIsLogin(true);
+        setEmail('');
+        setPassword('');
       }
     } catch (err) {
       setError('An unexpected error occurred');
@@ -69,12 +74,19 @@ const Auth = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                minLength={6}
               />
             </div>
             
             {error && (
-              <Alert>
+              <Alert variant="destructive">
                 <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
+
+            {success && (
+              <Alert>
+                <AlertDescription className="text-green-600">{success}</AlertDescription>
               </Alert>
             )}
 
@@ -86,7 +98,11 @@ const Auth = () => {
           <div className="mt-4 text-center">
             <button
               type="button"
-              onClick={() => setIsLogin(!isLogin)}
+              onClick={() => {
+                setIsLogin(!isLogin);
+                setError('');
+                setSuccess('');
+              }}
               className="text-sm text-blue-600 hover:underline"
             >
               {isLogin 
