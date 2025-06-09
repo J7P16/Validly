@@ -39,10 +39,27 @@ const Validate = () => {
     if (!idea.trim()) return;
     
     setIsLoading(true);
+    
     // Simulate API call
-    setTimeout(() => {
-      navigate('/results', { state: { idea } });
-    }, 2000);
+    try {
+      const response = await fetch("http://localhost:5001/api/generateInsights", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ idea }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to generate insights.");
+      }
+
+      const data = await response.json();
+      navigate("/results", { state: { idea, results: data } });
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
