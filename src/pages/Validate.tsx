@@ -34,32 +34,90 @@ const Validate = () => {
     return null;
   }
 
+  const generateMockResults = (idea: string) => {
+    return {
+      marketDemand: {
+        score: Math.floor(Math.random() * 4) + 7, // Random score between 7-10
+        summary: "Strong market potential with growing demand in the target sector.",
+        details: `The market for solutions like "${idea}" shows promising growth trends. Current market research indicates a significant gap that your startup could fill, with early adopters actively seeking alternatives to existing solutions.`
+      },
+      competitors: [
+        {
+          name: "MarketLeader Inc",
+          description: "Established player with traditional approach to the market",
+          popularity: "High",
+          locations: "North America, Europe",
+          pricing: "$50-200/month"
+        },
+        {
+          name: "InnovateTech",
+          description: "Modern startup with similar vision but different execution",
+          popularity: "Medium",
+          locations: "US West Coast",
+          pricing: "Freemium model"
+        },
+        {
+          name: "LocalSolution Co",
+          description: "Regional competitor with strong local presence",
+          popularity: "Low",
+          locations: "Regional markets",
+          pricing: "$20-100/month"
+        }
+      ],
+      targetAudience: [
+        "Small to medium business owners",
+        "Tech-savvy professionals aged 25-45",
+        "Companies looking to modernize operations",
+        "Remote-first organizations"
+      ],
+      revenueModels: [
+        "Monthly subscription with tiered pricing",
+        "Freemium model with premium features",
+        "Usage-based pricing for enterprise clients",
+        "One-time setup fee plus ongoing support"
+      ],
+      mvpFeatures: [
+        {
+          feature: "Core functionality dashboard",
+          priority: "High",
+          effort: "Medium"
+        },
+        {
+          feature: "User authentication and profiles",
+          priority: "High",
+          effort: "Low"
+        },
+        {
+          feature: "Basic analytics and reporting",
+          priority: "Medium",
+          effort: "Medium"
+        },
+        {
+          feature: "Integration with popular tools",
+          priority: "Medium",
+          effort: "High"
+        },
+        {
+          feature: "Mobile responsive interface",
+          priority: "Low",
+          effort: "Low"
+        }
+      ]
+    };
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!idea.trim()) return;
     
     setIsLoading(true);
     
-    // Simulate API call
-    try {
-      const response = await fetch("http://localhost:5001/api/generateInsights", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ idea }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to generate insights.");
-      }
-
-      const data = await response.json();
-      navigate("/results", { state: { idea, results: data } });
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Something went wrong. Please try again.");
-    } finally {
+    // Simulate API call with mock data
+    setTimeout(() => {
+      const mockResults = generateMockResults(idea);
+      navigate("/results", { state: { idea, results: mockResults } });
       setIsLoading(false);
-    }
+    }, 2000);
   };
 
   return (
