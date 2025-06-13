@@ -151,54 +151,66 @@ const Results = () => {
                   {/* Market Timing Timeline Chart */}
                   <div className="mt-6">
                     <h5 className="font-medium text-slate-900 mb-3">Market Readiness Timeline</h5>
-                    <div className="h-64 w-full">
-                      <ChartContainer config={chartConfig}>
-                        <ResponsiveContainer width="100%" height="100%">
-                          <LineChart data={timelineData}>
-                            <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                            <XAxis 
-                              dataKey="year" 
-                              className="text-xs"
-                              tick={{ fontSize: 12 }}
-                            />
-                            <YAxis 
-                              domain={[0, 100]}
-                              className="text-xs"
-                              tick={{ fontSize: 12 }}
-                              label={{ value: 'Readiness %', angle: -90, position: 'insideLeft' }}
-                            />
-                            <ChartTooltip content={<ChartTooltipContent />} />
-                            <Line 
-                              type="monotone" 
-                              dataKey="readiness" 
-                              stroke="#3b82f6" 
-                              strokeWidth={3}
-                              dot={{ fill: "#3b82f6", strokeWidth: 2, r: 4 }}
-                              name="Market Readiness"
-                            />
-                            <Line 
-                              type="monotone" 
-                              dataKey="adoption" 
-                              stroke="#10b981" 
-                              strokeWidth={3}
-                              dot={{ fill: "#10b981", strokeWidth: 2, r: 4 }}
-                              name="Consumer Adoption"
-                            />
-                            <Line 
-                              type="monotone" 
-                              dataKey="infrastructure" 
-                              stroke="#f59e0b" 
-                              strokeWidth={3}
-                              dot={{ fill: "#f59e0b", strokeWidth: 2, r: 4 }}
-                              name="Infrastructure Maturity"
-                            />
-                          </LineChart>
-                        </ResponsiveContainer>
-                      </ChartContainer>
+                    <div className="w-full bg-white rounded-lg border p-4">
+                      <div className="h-64 w-full">
+                        <ChartContainer config={chartConfig} className="h-full w-full">
+                          <ResponsiveContainer width="100%" height="100%">
+                            <LineChart 
+                              data={timelineData}
+                              margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+                            >
+                              <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
+                              <XAxis 
+                                dataKey="year" 
+                                tick={{ fontSize: 12 }}
+                                tickLine={{ stroke: '#94a3b8' }}
+                                axisLine={{ stroke: '#94a3b8' }}
+                              />
+                              <YAxis 
+                                domain={[0, 100]}
+                                tick={{ fontSize: 12 }}
+                                tickLine={{ stroke: '#94a3b8' }}
+                                axisLine={{ stroke: '#94a3b8' }}
+                                label={{ 
+                                  value: 'Readiness %', 
+                                  angle: -90, 
+                                  position: 'insideLeft',
+                                  style: { textAnchor: 'middle', fontSize: '12px' }
+                                }}
+                              />
+                              <ChartTooltip content={<ChartTooltipContent />} />
+                              <Line 
+                                type="monotone" 
+                                dataKey="readiness" 
+                                stroke="#3b82f6" 
+                                strokeWidth={2}
+                                dot={{ fill: "#3b82f6", strokeWidth: 2, r: 3 }}
+                                name="Market Readiness"
+                              />
+                              <Line 
+                                type="monotone" 
+                                dataKey="adoption" 
+                                stroke="#10b981" 
+                                strokeWidth={2}
+                                dot={{ fill: "#10b981", strokeWidth: 2, r: 3 }}
+                                name="Consumer Adoption"
+                              />
+                              <Line 
+                                type="monotone" 
+                                dataKey="infrastructure" 
+                                stroke="#f59e0b" 
+                                strokeWidth={2}
+                                dot={{ fill: "#f59e0b", strokeWidth: 2, r: 3 }}
+                                name="Infrastructure Maturity"
+                              />
+                            </LineChart>
+                          </ResponsiveContainer>
+                        </ChartContainer>
+                      </div>
+                      <p className="text-xs text-slate-500 mt-3 text-center">
+                        Timeline showing market factors alignment for optimal launch timing
+                      </p>
                     </div>
-                    <p className="text-xs text-slate-500 mt-2 text-center">
-                      Timeline showing market factors alignment for optimal launch timing
-                    </p>
                   </div>
                 </div>
               </div>
