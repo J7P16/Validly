@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -16,8 +17,6 @@ import {
 } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { UpgradeModal } from "@/components/UpgradeModal";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 
 const Results = () => {
   const navigate = useNavigate();
@@ -36,31 +35,6 @@ const Results = () => {
 
   const handleDownload = () => {
     setShowUpgradeModal(true);
-  };
-
-  // Mock timeline data for market readiness
-  const timelineData = [
-    { year: "2020", readiness: 30, adoption: 20, infrastructure: 40 },
-    { year: "2021", readiness: 45, adoption: 35, infrastructure: 55 },
-    { year: "2022", readiness: 60, adoption: 50, infrastructure: 70 },
-    { year: "2023", readiness: 75, adoption: 65, infrastructure: 85 },
-    { year: "2024", readiness: 90, adoption: 80, infrastructure: 95 },
-    { year: "2025", readiness: 95, adoption: 90, infrastructure: 98 },
-  ];
-
-  const chartConfig = {
-    readiness: {
-      label: "Market Readiness",
-      color: "#3b82f6",
-    },
-    adoption: {
-      label: "Consumer Adoption",
-      color: "#10b981",
-    },
-    infrastructure: {
-      label: "Infrastructure Maturity",
-      color: "#f59e0b",
-    },
   };
 
   return (
@@ -135,83 +109,16 @@ const Results = () => {
                   <Clock className="w-5 h-5 text-blue-600" />
                   <h4 className="text-lg font-semibold text-slate-900">Market Timing & Trends</h4>
                 </div>
-                <div className="bg-blue-50 p-4 rounded-lg space-y-4">
-                  <div className="space-y-3">
-                    <p className="text-slate-700">
-                      <strong>Market Readiness:</strong> {results.marketDemand.marketTiming.readiness}
-                    </p>
-                    <p className="text-slate-700">
-                      <strong>Emerging Trends:</strong> {results.marketDemand.marketTiming.trends}
-                    </p>
-                    <p className="text-slate-700">
-                      <strong>Timing Assessment:</strong> {results.marketDemand.marketTiming.assessment}
-                    </p>
-                  </div>
-                  
-                  {/* Market Timing Timeline Chart */}
-                  <div className="mt-6">
-                    <h5 className="font-medium text-slate-900 mb-3">Market Readiness Timeline</h5>
-                    <div className="w-full bg-white rounded-lg border p-4">
-                      <div className="h-64 w-full">
-                        <ChartContainer config={chartConfig} className="h-full w-full">
-                          <ResponsiveContainer width="100%" height="100%">
-                            <LineChart 
-                              data={timelineData}
-                              margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-                            >
-                              <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                              <XAxis 
-                                dataKey="year" 
-                                tick={{ fontSize: 12 }}
-                                tickLine={{ stroke: '#94a3b8' }}
-                                axisLine={{ stroke: '#94a3b8' }}
-                              />
-                              <YAxis 
-                                domain={[0, 100]}
-                                tick={{ fontSize: 12 }}
-                                tickLine={{ stroke: '#94a3b8' }}
-                                axisLine={{ stroke: '#94a3b8' }}
-                                label={{ 
-                                  value: 'Readiness %', 
-                                  angle: -90, 
-                                  position: 'insideLeft',
-                                  style: { textAnchor: 'middle', fontSize: '12px' }
-                                }}
-                              />
-                              <ChartTooltip content={<ChartTooltipContent />} />
-                              <Line 
-                                type="monotone" 
-                                dataKey="readiness" 
-                                stroke="#3b82f6" 
-                                strokeWidth={2}
-                                dot={{ fill: "#3b82f6", strokeWidth: 2, r: 3 }}
-                                name="Market Readiness"
-                              />
-                              <Line 
-                                type="monotone" 
-                                dataKey="adoption" 
-                                stroke="#10b981" 
-                                strokeWidth={2}
-                                dot={{ fill: "#10b981", strokeWidth: 2, r: 3 }}
-                                name="Consumer Adoption"
-                              />
-                              <Line 
-                                type="monotone" 
-                                dataKey="infrastructure" 
-                                stroke="#f59e0b" 
-                                strokeWidth={2}
-                                dot={{ fill: "#f59e0b", strokeWidth: 2, r: 3 }}
-                                name="Infrastructure Maturity"
-                              />
-                            </LineChart>
-                          </ResponsiveContainer>
-                        </ChartContainer>
-                      </div>
-                      <p className="text-xs text-slate-500 mt-3 text-center">
-                        Timeline showing market factors alignment for optimal launch timing
-                      </p>
-                    </div>
-                  </div>
+                <div className="bg-blue-50 p-4 rounded-lg space-y-3">
+                  <p className="text-slate-700">
+                    <strong>Market Readiness:</strong> {results.marketDemand.marketTiming.readiness}
+                  </p>
+                  <p className="text-slate-700">
+                    <strong>Emerging Trends:</strong> {results.marketDemand.marketTiming.trends}
+                  </p>
+                  <p className="text-slate-700">
+                    <strong>Timing Assessment:</strong> {results.marketDemand.marketTiming.assessment}
+                  </p>
                 </div>
               </div>
             </CardContent>
