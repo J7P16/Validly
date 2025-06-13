@@ -39,7 +39,17 @@ const Validate = () => {
       marketDemand: {
         score: Math.floor(Math.random() * 4) + 7, // Random score between 7-10
         summary: "Strong market potential with growing demand in the target sector.",
-        details: `The market for solutions like "${idea}" shows promising growth trends. Current market research indicates a significant gap that your startup could fill, with early adopters actively seeking alternatives to existing solutions.`
+        details: `The market for solutions like "${idea}" shows promising growth trends. Current market research indicates a significant gap that your startup could fill, with early adopters actively seeking alternatives to existing solutions.`,
+        customerPainPoints: {
+          primaryPain: "Users struggle with inefficient workflows and time-consuming manual processes that could be automated or streamlined.",
+          urgency: "This is a \"painkiller\" problem - customers actively seek solutions to reduce operational friction and increase productivity.",
+          evidence: "Early customer interviews reveal frustration with current alternatives, with 78% of surveyed users expressing willingness to pay for a better solution."
+        },
+        marketTiming: {
+          readiness: "The market is primed for this solution with recent technological advances making implementation feasible and cost-effective.",
+          trends: "Growing remote work adoption and digital transformation initiatives are driving demand for innovative workflow solutions.",
+          assessment: "Optimal timing - early enough to capture market share but late enough for infrastructure and consumer behavior to support adoption."
+        }
       },
       competitors: [
         {
