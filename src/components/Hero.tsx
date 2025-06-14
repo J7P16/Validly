@@ -1,4 +1,3 @@
-
 import { ArrowRight, Shield, Zap, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AuthButton } from "@/components/AuthButton";
@@ -6,9 +5,11 @@ import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
 
 export const Hero = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   // Fetch user profile data
   const { data: profile } = useQuery({
@@ -46,7 +47,7 @@ export const Hero = () => {
             <span className="text-xl font-bold text-gray-900">Validly</span>
           </Link>
         </div>
-        
+
         {/* Desktop Navigation */}
         <div className="hidden lg:flex lg:gap-x-12">
           <div className="relative group">
@@ -78,6 +79,11 @@ export const Hero = () => {
         </div>
 
         <div className="flex items-center gap-4 lg:ml-8">
+          {user && (
+            <Button variant="ghost" onClick={() => navigate('/profile')}>
+              Profile
+            </Button>
+          )}
           <AuthButton />
         </div>
       </nav>
