@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -35,9 +34,6 @@ export default function ProfileDashboard() {
     enabled: !!user,
   });
 
-  // Dummy plan value
-  const pricingPlan = "Free"; // Replace with real plan logic if available
-
   // Fetch user's ideas
   const { data: userIdeas, isLoading: loadingIdeas } = useQuery({
     queryKey: ["user-ideas", user?.id],
@@ -58,6 +54,9 @@ export default function ProfileDashboard() {
       navigate("/auth");
     }
   }, [user, loading, navigate]);
+
+  // Dummy plan value - fix TypeScript error by using union type
+  const pricingPlan: "Free" | "Pro" = "Free"; // Replace with real plan logic if available
 
   if (loading) {
     return (

@@ -8,6 +8,7 @@ import { Trash, ChevronDown } from "lucide-react";
 type SampleIdea = {
   id: string;
   idea: string;
+  user_prompt: string;
   ai_response: {
     overview: string;
     revenue_model: string;
@@ -22,6 +23,7 @@ const SAMPLE_IDEAS: SampleIdea[] = [
   {
     id: "1",
     idea: "AI-powered Language Learning Platform",
+    user_prompt: "I want to create a language learning app that uses AI to personalize lessons for each user. How can I make this different from existing apps like Duolingo?",
     ai_response: {
       overview: "This innovative language learning platform combines spaced repetition with AI-driven lesson plans to tailor content per user's learning style and pace.",
       revenue_model: "Subscription-based model with tiered pricing: Basic ($9.99/month), Premium ($19.99/month), and Enterprise ($49.99/month for teams).",
@@ -34,6 +36,7 @@ const SAMPLE_IDEAS: SampleIdea[] = [
   {
     id: "2",
     idea: "Eco-Friendly Delivery Service",
+    user_prompt: "What about a delivery service that only uses electric vehicles and bikes? Could this work in major cities and how would I compete with existing delivery companies?",
     ai_response: {
       overview: "An app-based delivery service that matches customers with green last-mile delivery options using electric vehicles, bicycles, and sustainable packaging.",
       revenue_model: "Commission-based model taking 15-20% per delivery, plus premium subscription for priority green delivery at $12.99/month.",
@@ -46,6 +49,7 @@ const SAMPLE_IDEAS: SampleIdea[] = [
   {
     id: "3",
     idea: "Health & Wellness Gamification App",
+    user_prompt: "I'm thinking of an app that turns healthy habits into a game with rewards and competitions. How can I make people actually stick with it long-term?",
     ai_response: {
       overview: "Gamifies daily healthy habits through challenges, achievements, and social competition, incentivizing users with real prizes and leaderboards.",
       revenue_model: "Freemium model with basic features free, premium at $7.99/month, plus in-app purchases for premium challenges and exclusive rewards.",
@@ -58,6 +62,7 @@ const SAMPLE_IDEAS: SampleIdea[] = [
   {
     id: "4",
     idea: "Remote Team-Building Experiences",
+    user_prompt: "With so many people working remotely, I want to create virtual team building activities that actually work. What would make companies pay for this?",
     ai_response: {
       overview: "Offers virtual games, workshops, and live interactive events designed to enhance remote employee engagement and team cohesion.",
       revenue_model: "B2B SaaS with tiered pricing: Starter ($29/month for up to 25 employees), Professional ($99/month for up to 100), Enterprise (custom pricing).",
@@ -70,6 +75,7 @@ const SAMPLE_IDEAS: SampleIdea[] = [
   {
     id: "5",
     idea: "On-demand Home Chef Platform",
+    user_prompt: "I love the idea of having a professional chef cook in my home for special occasions. Could I build a platform to connect people with local chefs?",
     ai_response: {
       overview: "Connects users with vetted, local home chefs for private dining experiences, meal prep services, and cooking lessons in their own homes.",
       revenue_model: "Marketplace model with 18% commission from chefs, plus monthly subscription for priority booking and exclusive chef access at $24.99/month.",
@@ -136,42 +142,52 @@ export default function SampleStartupIdeas() {
           </CardHeader>
           {openDropdown === idea.id && (
             <CardContent>
-              <div>
-                <span className="block font-semibold text-slate-800 mb-3">
-                  AI Analysis
-                </span>
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="overview">
-                    <AccordionTrigger className="text-sm font-medium">Overview</AccordionTrigger>
-                    <AccordionContent>
-                      <p className="text-sm text-slate-700">{idea.ai_response.overview}</p>
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="revenue">
-                    <AccordionTrigger className="text-sm font-medium">Revenue Model</AccordionTrigger>
-                    <AccordionContent>
-                      <p className="text-sm text-slate-700">{idea.ai_response.revenue_model}</p>
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="challenges">
-                    <AccordionTrigger className="text-sm font-medium">Challenges</AccordionTrigger>
-                    <AccordionContent>
-                      <p className="text-sm text-slate-700">{idea.ai_response.challenges}</p>
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="market">
-                    <AccordionTrigger className="text-sm font-medium">Market Analysis</AccordionTrigger>
-                    <AccordionContent>
-                      <p className="text-sm text-slate-700">{idea.ai_response.market_analysis}</p>
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="recommendations">
-                    <AccordionTrigger className="text-sm font-medium">Recommendations</AccordionTrigger>
-                    <AccordionContent>
-                      <p className="text-sm text-slate-700">{idea.ai_response.recommendations}</p>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
+              <div className="space-y-4">
+                <div>
+                  <span className="block font-semibold text-slate-800 mb-2">
+                    Your Question
+                  </span>
+                  <div className="bg-slate-50 p-3 rounded-md border-l-4 border-blue-500">
+                    <p className="text-sm text-slate-700 italic">"{idea.user_prompt}"</p>
+                  </div>
+                </div>
+                <div>
+                  <span className="block font-semibold text-slate-800 mb-3">
+                    AI Analysis
+                  </span>
+                  <Accordion type="single" collapsible className="w-full">
+                    <AccordionItem value="overview">
+                      <AccordionTrigger className="text-sm font-medium">Overview</AccordionTrigger>
+                      <AccordionContent>
+                        <p className="text-sm text-slate-700">{idea.ai_response.overview}</p>
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="revenue">
+                      <AccordionTrigger className="text-sm font-medium">Revenue Model</AccordionTrigger>
+                      <AccordionContent>
+                        <p className="text-sm text-slate-700">{idea.ai_response.revenue_model}</p>
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="challenges">
+                      <AccordionTrigger className="text-sm font-medium">Challenges</AccordionTrigger>
+                      <AccordionContent>
+                        <p className="text-sm text-slate-700">{idea.ai_response.challenges}</p>
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="market">
+                      <AccordionTrigger className="text-sm font-medium">Market Analysis</AccordionTrigger>
+                      <AccordionContent>
+                        <p className="text-sm text-slate-700">{idea.ai_response.market_analysis}</p>
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="recommendations">
+                      <AccordionTrigger className="text-sm font-medium">Recommendations</AccordionTrigger>
+                      <AccordionContent>
+                        <p className="text-sm text-slate-700">{idea.ai_response.recommendations}</p>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </div>
               </div>
             </CardContent>
           )}
