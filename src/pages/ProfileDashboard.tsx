@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -105,9 +106,9 @@ export default function ProfileDashboard() {
                 </Badge>
               </div>
               <div className="text-slate-600">
-                {pricingPlan === "Free"
-                  ? "Enjoy basic access to all essential features."
-                  : "Thanks for supporting with a Pro subscription!"}
+                {pricingPlan === "Pro"
+                  ? "Thanks for supporting with a Pro subscription!"
+                  : "Enjoy basic access to all essential features."}
               </div>
               <Button variant="outline" className="mt-4 w-full" onClick={() => navigate("/pricing")}>
                 Manage Plan
