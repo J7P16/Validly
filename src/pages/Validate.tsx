@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowLeft, Lightbulb, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -10,6 +12,8 @@ import { useAuth } from "@/contexts/AuthContext";
 const Validate = () => {
   const [idea, setIdea] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [personalizedResponse, setPersonalizedResponse] = useState(false);
+  const [selectedModel, setSelectedModel] = useState("gpt-4o");
   const navigate = useNavigate();
   const { user, loading } = useAuth();
 
@@ -158,9 +162,36 @@ const Validate = () => {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="idea" className="block text-sm font-medium text-slate-700 mb-2">
-                  Your Startup Idea
-                </label>
+                <div className="flex justify-between items-center mb-4">
+                  <label htmlFor="idea" className="block text-sm font-medium text-slate-700">
+                    Your Startup Idea
+                  </label>
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center space-x-2">
+                      <Switch
+                        id="personalized-response"
+                        checked={personalizedResponse}
+                        onCheckedChange={setPersonalizedResponse}
+                      />
+                      <label
+                        htmlFor="personalized-response"
+                        className="text-sm font-medium text-slate-700"
+                      >
+                        Personalized Response
+                      </label>
+                    </div>
+                    <Select value={selectedModel} onValueChange={setSelectedModel}>
+                      <SelectTrigger className="w-32">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="gpt-4o">GPT-4o</SelectItem>
+                        <SelectItem value="gpt-4-turbo">GPT-4 Turbo</SelectItem>
+                        <SelectItem value="claude-3">Claude 3</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
                 <Textarea
                   id="idea"
                   value={idea}

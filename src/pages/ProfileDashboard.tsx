@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -55,8 +56,8 @@ export default function ProfileDashboard() {
     }
   }, [user, loading, navigate]);
 
-  // Dummy plan value - fix TypeScript error by using union type
-  const pricingPlan: "Free" | "Pro" = "Free"; // Replace with real plan logic if available
+  // Dummy plan value - properly typed
+  const pricingPlan = "Free" as const;
 
   if (loading) {
     return (
@@ -100,14 +101,12 @@ export default function ProfileDashboard() {
             </CardHeader>
             <CardContent>
               <div className="mb-2">
-                <Badge className={pricingPlan === "Pro" ? "bg-purple-600" : "bg-blue-600"}>
+                <Badge className="bg-blue-600">
                   {pricingPlan}
                 </Badge>
               </div>
               <div className="text-slate-600">
-                {pricingPlan === "Pro"
-                  ? "Thanks for supporting with a Pro subscription!"
-                  : "Enjoy basic access to all essential features."}
+                Enjoy basic access to all essential features.
               </div>
               <Button variant="outline" className="mt-4 w-full" onClick={() => navigate("/pricing")}>
                 Manage Plan
