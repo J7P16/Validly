@@ -1,3 +1,4 @@
+
 import { ArrowRight, Shield, Zap, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AuthButton } from "@/components/AuthButton";
@@ -90,6 +91,20 @@ export const Hero = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+        {/* Styled Validly Title */}
+        <div className="flex justify-center mb-8">
+          <div className="relative inline-block">
+            <h2 className="text-6xl sm:text-8xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent transform -rotate-2">
+              Validly
+            </h2>
+            {/* Double underline similar to 100 emoji */}
+            <div className="absolute -bottom-2 left-0 right-0">
+              <div className="h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-1 transform rotate-1"></div>
+              <div className="h-2 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full transform -rotate-1"></div>
+            </div>
+          </div>
+        </div>
+
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
           {user && profile?.first_name ? (
             <>
