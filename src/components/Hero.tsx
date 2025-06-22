@@ -1,4 +1,3 @@
-
 import { ArrowRight, Shield, Zap, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AuthButton } from "@/components/AuthButton";
@@ -94,13 +93,37 @@ export const Hero = () => {
         {/* Styled Validly Title */}
         <div className="flex justify-center mb-8">
           <div className="relative inline-block">
-            <h2 className="text-6xl sm:text-8xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent transform -rotate-2">
+            <h2 className="text-6xl sm:text-8xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
               Validly
             </h2>
-            {/* Double underline similar to 100 emoji */}
-            <div className="absolute -bottom-2 left-0 right-0">
-              <div className="h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-1 transform rotate-1"></div>
-              <div className="h-2 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full transform -rotate-1"></div>
+            {/* Double curved underline matching 100 emoji */}
+            <div className="absolute -bottom-3 left-0 right-0">
+              <svg viewBox="0 0 300 20" className="w-full h-5">
+                <path 
+                  d="M10 12 Q150 8 290 12" 
+                  stroke="url(#gradient1)" 
+                  strokeWidth="3" 
+                  fill="none"
+                  strokeLinecap="round"
+                />
+                <path 
+                  d="M10 16 Q150 20 290 16" 
+                  stroke="url(#gradient2)" 
+                  strokeWidth="3" 
+                  fill="none"
+                  strokeLinecap="round"
+                />
+                <defs>
+                  <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#3B82F6" />
+                    <stop offset="100%" stopColor="#8B5CF6" />
+                  </linearGradient>
+                  <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#8B5CF6" />
+                    <stop offset="100%" stopColor="#6366F1" />
+                  </linearGradient>
+                </defs>
+              </svg>
             </div>
           </div>
         </div>
