@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -182,7 +183,7 @@ const ProfileDashboard = () => {
                 type="text"
                 id="startup_experience"
                 name="startup_experience"
-                defaultValue={profile?.startup_experience || ''}
+                defaultValue={profile?.startup_experience ? 'Yes' : 'No'}
                 onChange={handleInputChange}
                 disabled={!isEditing}
               />
